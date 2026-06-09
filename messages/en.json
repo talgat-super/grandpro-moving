@@ -1,0 +1,138 @@
+{
+  "nav": {
+    "services": "Services",
+    "calculator": "Calculator",
+    "about": "About",
+    "gallery": "Gallery",
+    "reviews": "Reviews",
+    "contacts": "Contacts",
+    "callUs": "Call Us"
+  },
+  "hero": {
+    "badge": "#1 Moving Operator in Kazakhstan",
+    "title": "Stress-Free Moving",
+    "titleAccent": "guaranteed",
+    "subtitle": "Professional apartment, office and enterprise moving in Almaty. 100% liability guarantee. Fixed prices, no hidden fees.",
+    "ctaPrimary": "Calculate Cost",
+    "ctaSecondary": "View Services",
+    "formTitle": "Quick Request",
+    "formName": "Your Name",
+    "formPhone": "Phone Number",
+    "formService": "Moving Type",
+    "formSubmit": "Send Request",
+    "stats": {
+      "clients": "clients",
+      "years": "years experience",
+      "trucks": "trucks",
+      "guarantee": "guarantee"
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Full range of moving services for individuals and businesses",
+    "learnMore": "Learn more",
+    "items": {
+      "apartment": { "title": "Apartment Moving", "desc": "Careful packing, transportation and furniture assembly. Insurance included." },
+      "office": { "title": "Office Relocation", "desc": "Business moving without work stoppage. We work nights and weekends." },
+      "international": { "title": "International Moving", "desc": "Moving to any CIS country and abroad. Customs clearance." },
+      "rigging": { "title": "Rigging Works", "desc": "Moving heavy equipment, safes, machinery." },
+      "packing": { "title": "Professional Packing", "desc": "Premium packing materials. Special boxes for fragile items." },
+      "storage": { "title": "Storage", "desc": "Guarded warehouse with video surveillance. Short and long-term." }
+    }
+  },
+  "calculator": {
+    "title": "Cost Calculator",
+    "subtitle": "Get an instant preliminary estimate online",
+    "moveType": "Moving Type",
+    "apartment": "Apartment",
+    "office": "Office",
+    "international": "International",
+    "rigging": "Rigging",
+    "distance": "Distance (km)",
+    "furniture": "Furniture volume (m³)",
+    "workers": "Number of movers",
+    "options": "Additional services",
+    "optLift": "Elevator/Lift",
+    "optPack": "Packing",
+    "optAssemble": "Assembly/Disassembly",
+    "optTruck": "Heavy truck",
+    "estimateTitle": "Preliminary Estimate",
+    "basePrice": "Base cost",
+    "distancePrice": "For distance",
+    "furniture_label": "Furniture",
+    "workers_label": "Movers",
+    "extra": "Extra services",
+    "total": "Total",
+    "time": "Estimated time",
+    "hours": "hours",
+    "bookBtn": "Book a Date",
+    "disclaimer": "* Exact cost calculated by manager after inspection"
+  },
+  "about": {
+    "title": "About Company",
+    "subtitle": "10 years of experience in Kazakhstan's moving market",
+    "stats": {
+      "clients": { "value": "12,000+", "label": "Happy Clients" },
+      "years": { "value": "10", "label": "Years in Market" },
+      "trucks": { "value": "47", "label": "Fleet Vehicles" },
+      "guarantee": { "value": "100%", "label": "Full Liability" }
+    }
+  },
+  "reviews": {
+    "title": "Client Reviews",
+    "subtitle": "Over 3,000 reviews on 2GIS, Google and Yandex",
+    "prev": "Previous",
+    "next": "Next"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Answers to the most popular questions about our services",
+    "items": [
+      { "q": "How is the moving cost calculated?", "a": "Cost depends on the volume of items, distance, floor level, and selected services. Use our calculator for a preliminary estimate." },
+      { "q": "Do you provide cargo insurance?", "a": "Yes, we bear 100% material liability for cargo. Every move is documented with an acceptance act." },
+      { "q": "How far in advance should I book?", "a": "We recommend booking 3-7 days in advance. During peak season (May-September) — 1-2 weeks." },
+      { "q": "Do you work on weekends and holidays?", "a": "Yes, we work 7 days a week, 24 hours a day. No surcharges for weekends or holidays." },
+      { "q": "How does the moving process work?", "a": "1) Request → 2) Free estimator visit → 3) Fixed price in contract → 4) Moving day → 5) Completion act." }
+    ]
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Leave a request and we'll call back within 15 minutes",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "hours": "Working Hours",
+    "hoursValue": "Daily 8:00–22:00",
+    "open2gis": "Open 2GIS →",
+    "form": {
+      "name": "Your Name *",
+      "phone": "Phone *",
+      "service": "Service Type",
+      "servicePlaceholder": "— Select a service —",
+      "message": "Message",
+      "messagePlaceholder": "Describe your move...",
+      "submit": "Send Request",
+      "sending": "Sending...",
+      "success": "Thank you! We'll call back within 15 minutes.",
+      "error": "Send error. Please call us: +7 700 123-45-67"
+    }
+  },
+  "footer": {
+    "tagline": "High-tech moving in Kazakhstan",
+    "links": "Quick Links",
+    "legal": "Legal Information",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contacts": "Contacts",
+    "copyright": "All rights reserved."
+  },
+  "chat": {
+    "title": "GrandPro Support",
+    "online": "Online",
+    "subtitle": "Choose your preferred contact method",
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "phone": "+7 700 123-45-67",
+    "trigger": "Contact us"
+  }
+}
