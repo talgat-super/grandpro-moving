@@ -43,7 +43,7 @@ export function ReviewsSection() {
   const visible = REVIEWS.slice(page * perPage, page * perPage + perPage)
 
   return (
-    <section id="reviews" className="py-24" style={{ background: 'var(--bg-surface)' }}>
+    <section id="reviews" className="py-16 md:py-28" style={{ background: 'var(--bg-surface)' }}>
       <div className="max-w-[1280px] mx-auto px-6">
         <SectionHeader title={t('title')} subtitle={t('subtitle')} />
 
@@ -51,34 +51,41 @@ export function ReviewsSection() {
           {visible.map((r, i) => (
             <div
               key={i}
-              className="rounded-xl p-7"
+              className="rounded-2xl p-8 flex flex-col transition-all duration-300"
               style={{
                 background: 'var(--bg-main)',
                 border: '1px solid var(--color-border)',
               }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = 'var(--color-primary)'
+                e.currentTarget.style.boxShadow = '0 12px 36px var(--shadow-main)'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'var(--color-border)'
+                e.currentTarget.style.boxShadow = 'none'
+              }}
             >
-              <div className="flex gap-0.5 mb-4" aria-label={`Рейтинг: ${r.rating} из 5`}>
+              <div className="flex gap-1 mb-5" aria-label={`Рейтинг: ${r.rating} из 5`}>
                 {Array.from({ length: r.rating }).map((_, j) => (
-                  <Star key={j} size={18} style={{ color: '#F59E0B', fill: '#F59E0B' }} />
+                  <Star key={j} size={16} style={{ color: '#F59E0B', fill: '#F59E0B' }} />
                 ))}
               </div>
-              <p className="leading-relaxed mb-5 italic" style={{ color: 'var(--color-text)' }}>
+              <p className="leading-relaxed mb-6 flex-grow" style={{ color: 'var(--color-text)', fontSize: '0.95rem', lineHeight: 1.8, fontStyle: 'italic' }}>
                 &ldquo;{r.text}&rdquo;
               </p>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 pt-4" style={{ borderTop: '1px solid var(--color-border)' }}>
                 <div
-                  className="w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm"
+                  className="w-11 h-11 rounded-xl flex items-center justify-center font-bold text-sm flex-shrink-0"
                   style={{
-                    background: 'var(--color-primary)',
+                    background: 'var(--gradient-primary)',
                     color: 'white',
-                    opacity: 0.85,
                   }}
                 >
                   {r.avatar}
                 </div>
                 <div>
-                  <p className="font-semibold" style={{ color: 'var(--color-text)' }}>{r.name}</p>
-                  <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>{r.role}</p>
+                  <p className="font-semibold text-sm" style={{ color: 'var(--color-text)' }}>{r.name}</p>
+                  <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{r.role}</p>
                 </div>
               </div>
             </div>

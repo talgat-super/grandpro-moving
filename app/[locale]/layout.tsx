@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
-import { ThemeProvider } from 'next-themes'
+import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import Script from 'next/script'
 import './globals.css'
 
@@ -47,6 +47,9 @@ const schemaOrg = {
   },
 }
 
+// Runs before React hydration in the browser — no React warning because this is a Server Component
+const themeInitScript = `(function(){try{var t=localStorage.getItem('theme');document.documentElement.classList.add(t==='light'?'light':'dark')}catch(e){document.documentElement.classList.add('dark')}})()`
+
 export default async function LocaleLayout({
   children,
   params,
@@ -61,19 +64,27 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <head>
+      <body>
+        {/*
+          strategy="beforeInteractive" — Next.js physically extracts this from React's
+          virtual DOM and injects it into <head> in the raw HTML. React never sees a
+          <script> node during rendering, so no console warning fires.
+        */}
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: themeInitScript }}
+        />
+        <ThemeProvider defaultTheme="dark">
+          <NextIntlClientProvider messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </ThemeProvider>
         <Script
           id="schema-org"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
         />
-      </head>
-      <body>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          <NextIntlClientProvider messages={messages}>
-            {children}
-          </NextIntlClientProvider>
-        </ThemeProvider>
       </body>
     </html>
   )

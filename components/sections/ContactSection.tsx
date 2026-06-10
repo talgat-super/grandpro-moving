@@ -15,7 +15,7 @@ export function ContactSection() {
   ]
 
   return (
-    <section id="contact" className="py-24" style={{ background: 'var(--bg-surface)' }}>
+    <section id="contact" className="py-16 md:py-28" style={{ background: 'var(--bg-surface)' }}>
       <div className="max-w-[1280px] mx-auto px-6">
         <SectionHeader title={t('title')} subtitle={t('subtitle')} />
 

@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { ChevronDown } from 'lucide-react'
+import { Plus, Minus } from 'lucide-react'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 
 export function FaqSection() {
@@ -10,7 +10,7 @@ export function FaqSection() {
   const items = t.raw('items') as Array<{ q: string; a: string }>
 
   return (
-    <section className="py-24" style={{ background: 'var(--bg-main)' }}>
+    <section className="py-16 md:py-28" style={{ background: 'var(--bg-main)' }}>
       <div className="max-w-[1280px] mx-auto px-6">
         <SectionHeader title={t('title')} subtitle={t('subtitle')} />
 
@@ -18,38 +18,38 @@ export function FaqSection() {
           {items.map((item, i) => (
             <div
               key={i}
-              className="overflow-hidden rounded-lg"
+              className="overflow-hidden rounded-xl transition-all duration-200"
               style={{
                 background: 'var(--bg-surface)',
-                border: '1px solid var(--color-border)',
+                border: open === i ? '1px solid var(--color-primary)' : '1px solid var(--color-border)',
+                boxShadow: open === i ? '0 4px 20px var(--shadow-main)' : 'none',
               }}
             >
               <button
                 onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between px-6 py-5 text-left
-                  transition-colors cursor-pointer"
-                style={{ color: 'var(--color-text)' }}
-                onMouseEnter={e => (e.currentTarget.style.background = 'var(--bg-surface-elevated)')}
-                onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
+                className="w-full flex items-center justify-between px-6 py-5 text-left cursor-pointer"
                 aria-expanded={open === i}
               >
-                <span className="font-heading font-semibold pr-4">{item.q}</span>
-                <ChevronDown
-                  size={20}
-                  className="flex-shrink-0 transition-transform duration-300"
+                <span className="font-heading font-semibold pr-4" style={{ color: 'var(--color-text)' }}>
+                  {item.q}
+                </span>
+                <span
+                  className="flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-200"
                   style={{
-                    color: 'var(--color-primary)',
-                    transform: open === i ? 'rotate(180deg)' : 'rotate(0deg)',
+                    background: open === i ? 'var(--color-primary)' : 'var(--active-badge)',
+                    color: open === i ? 'white' : 'var(--color-primary)',
                   }}
-                />
+                >
+                  {open === i ? <Minus size={16} /> : <Plus size={16} />}
+                </span>
               </button>
               <div
                 className="overflow-hidden transition-all duration-300"
                 style={{ maxHeight: open === i ? '300px' : '0px' }}
               >
                 <p
-                  className="px-6 pb-5 text-sm leading-relaxed"
-                  style={{ color: 'var(--color-text-muted)' }}
+                  className="px-6 pb-6 text-sm leading-relaxed"
+                  style={{ color: 'var(--color-text-muted)', lineHeight: 1.75 }}
                 >
                   {item.a}
                 </p>

@@ -42,13 +42,13 @@ export function CalculatorSection() {
   } as React.CSSProperties
 
   return (
-    <section id="calculator" className="py-24" style={{ background: 'var(--bg-surface)' }}>
+    <section id="calculator" className="py-16 md:py-28" style={{ background: 'var(--bg-surface)' }}>
       <div className="max-w-[1280px] mx-auto px-6">
         <SectionHeader title={t('title')} subtitle={t('subtitle')} />
 
         <div
-          className="rounded-2xl overflow-hidden shadow-xl"
-          style={{ border: '1px solid var(--color-border)', background: 'var(--bg-surface)' }}
+          className="rounded-2xl overflow-hidden"
+          style={{ border: '1px solid var(--color-border)', background: 'var(--bg-surface)', boxShadow: '0 24px 64px var(--shadow-main)' }}
         >
           <div className="grid lg:grid-cols-[1.3fr_0.7fr]">
 
@@ -148,10 +148,10 @@ export function CalculatorSection() {
 
             {/* Summary */}
             <div
-              className="p-8 md:p-10 flex flex-col justify-between"
+              className="p-8 md:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l"
               style={{
                 background: 'var(--bg-surface-elevated)',
-                borderLeft: '1px solid var(--color-border)',
+                borderColor: 'var(--color-border)',
               }}
             >
               <div>
@@ -196,11 +196,11 @@ export function CalculatorSection() {
               <div className="mt-6 space-y-3">
                 <a
                   href="#contact"
-                  className="block w-full py-3.5 rounded-lg font-semibold text-center text-white
+                  className="block w-full py-3.5 rounded-xl font-bold text-center text-white
                     transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
-                  style={{ background: 'var(--color-primary)' }}
-                  onMouseEnter={e => (e.currentTarget.style.background = 'var(--color-primary-hover)')}
-                  onMouseLeave={e => (e.currentTarget.style.background = 'var(--color-primary)')}
+                  style={{ background: 'var(--gradient-primary)', boxShadow: '0 4px 16px rgba(14,165,233,0.3)' }}
+                  onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 8px 24px rgba(14,165,233,0.5)')}
+                  onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 4px 16px rgba(14,165,233,0.3)')}
                 >
                   {t('bookBtn')}
                 </a>

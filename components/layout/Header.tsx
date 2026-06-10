@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { useTheme } from 'next-themes'
+import { useTheme } from '@/components/providers/ThemeProvider'
 import { useLocale, useTranslations } from 'next-intl'
 import { useRouter, usePathname } from 'next/navigation'
 import { Sun, Moon, Menu, X, Phone } from 'lucide-react'
@@ -21,8 +21,10 @@ export function Header() {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     const handler = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handler, { passive: true })
     return () => window.removeEventListener('scroll', handler)
@@ -36,16 +38,27 @@ export function Header() {
 
   return (
     <header
-      className="fixed top-0 left-0 w-full z-[1000] transition-all duration-300"
+      className="fixed z-50 transition-all duration-300"
       style={{
-        padding: scrolled ? '0.75rem 0' : '1.25rem 0',
-        background: scrolled ? 'var(--glass-bg)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(16px)' : 'none',
-        borderBottom: scrolled ? '1px solid var(--color-border)' : 'none',
-        boxShadow: scrolled ? '0 4px 20px var(--shadow-main)' : 'none',
+        top: '16px',
+        left: '16px',
+        right: '16px',
       }}
     >
-      <div className="max-w-[1280px] mx-auto px-6 flex items-center justify-between">
+      <div
+        className="max-w-[1280px] mx-auto rounded-2xl transition-all duration-300"
+        style={{
+          padding: scrolled ? '0.625rem 1.5rem' : '0.875rem 1.5rem',
+          background: 'var(--glass-bg)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          border: '1px solid var(--glass-border)',
+          boxShadow: scrolled
+            ? '0 8px 40px var(--shadow-main), 0 0 0 1px var(--glass-border)'
+            : '0 4px 24px rgba(0,0,0,0.12)',
+        }}
+      >
+      <div className="flex items-center justify-between">
         <a href="#" className="font-heading text-2xl font-extrabold tracking-tight">
           Grand<span style={{ color: 'var(--color-primary)' }}>Pro</span>
         </a>
@@ -96,7 +109,7 @@ export function Header() {
             }}
             aria-label="Toggle theme"
           >
-            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+            {mounted ? (theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />) : <span className="w-4 h-4 block" />}
           </button>
 
           <a
@@ -120,6 +133,7 @@ export function Header() {
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
+      </div>
       </div>
 
       {/* Mobile menu overlay */}
