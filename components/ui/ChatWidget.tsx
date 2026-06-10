@@ -54,7 +54,7 @@ export function ChatWidget() {
             </p>
 
             <a
-              href="https://wa.me/77001234567"
+              href="https://wa.me/77077097422"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 w-full px-4 py-3 rounded-lg font-semibold text-sm
@@ -82,7 +82,7 @@ export function ChatWidget() {
             </a>
 
             <a
-              href="tel:+77001234567"
+              href="tel:+77077097422"
               className="flex items-center gap-3 w-full px-4 py-3 rounded-lg font-semibold text-sm
                 transition-colors cursor-pointer"
               style={{

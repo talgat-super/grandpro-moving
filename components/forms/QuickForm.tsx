@@ -87,7 +87,7 @@ export function QuickForm() {
         <option value="rigging">Такелаж</option>
       </select>
       {error && (
-        <p className="text-red-500 text-sm">Ошибка. Позвоните: +7 700 123-45-67</p>
+        <p className="text-red-500 text-sm">Ошибка. Позвоните: +7 707 709-74-22</p>
       )}
       <button
         type="submit"

@@ -9,7 +9,7 @@ export function ContactSection() {
   const t = useTranslations('contact')
 
   const contactItems = [
-    { icon: Phone, label: t('phone'), value: '+7 (700) 123-45-67', href: 'tel:+77001234567' },
+    { icon: Phone, label: t('phone'), value: '+7 (707) 709-74-22', href: 'tel:+77077097422' },
     { icon: Mail, label: t('email'), value: 'info@grandpro.kz', href: 'mailto:info@grandpro.kz' },
     { icon: MapPin, label: t('address'), value: 'пр. Аль-Фараби, 77/7, Esentai Tower, Алматы', href: null },
     { icon: Clock, label: t('hours'), value: t('hoursValue'), href: null },

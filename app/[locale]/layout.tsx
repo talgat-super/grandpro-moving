@@ -30,7 +30,7 @@ const schemaOrg = {
   '@type': 'MovingCompany',
   name: 'GrandPro Moving Almaty',
   url: 'https://grandpro.kz',
-  telephone: '+77001234567',
+  telephone: '+77077097422',
   priceRange: '$$',
   address: {
     '@type': 'PostalAddress',

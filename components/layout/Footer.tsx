@@ -72,8 +72,8 @@ export function Footer() {
             <h5 className="text-white font-semibold mb-4">{t('contacts')}</h5>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <a href="tel:+77001234567" className="hover:text-white transition-colors">
-                  +7 (700) 123-45-67
+                <a href="tel:+77077097422" className="hover:text-white transition-colors">
+                  +7 (707) 709-74-22
                 </a>
               </li>
               <li>

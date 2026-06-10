@@ -240,7 +240,7 @@ export function Header() {
 
             {/* ── Call CTA ── */}
             <motion.a
-              href="tel:+77001234567"
+              href="tel:+77077097422"
               whileHover={{ scale: 1.04, y: -1 }}
               whileTap={{ scale: 0.97 }}
               className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl font-semibold text-sm text-white cursor-pointer"
@@ -348,12 +348,12 @@ export function Header() {
           </div>
 
           <a
-            href="tel:+77001234567"
+            href="tel:+77077097422"
             className="flex items-center gap-2 px-4 py-3 rounded-xl font-semibold text-center justify-center text-white mt-2 cursor-pointer"
             style={{ background: 'var(--color-primary)' }}
           >
             <Phone size={16} />
-            +7 700 123-45-67
+            +7 707 709-74-22
           </a>
         </nav>
       </motion.div>
