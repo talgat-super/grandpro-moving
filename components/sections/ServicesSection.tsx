@@ -1,10 +1,24 @@
 'use client'
 import { useTranslations } from 'next-intl'
 import { Home, Building2, Globe, Package, Box, Warehouse } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 
 const SERVICE_ICONS = [Home, Building2, Globe, Package, Box, Warehouse]
 const SERVICE_KEYS = ['apartment', 'office', 'international', 'rigging', 'packing', 'storage'] as const
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 44 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.08,
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+}
 
 export function ServicesSection() {
   const t = useTranslations('services')
@@ -19,8 +33,13 @@ export function ServicesSection() {
             const Icon = SERVICE_ICONS[i]
             const num = String(i + 1).padStart(2, '0')
             return (
-              <div
+              <motion.div
                 key={key}
+                custom={i}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-40px' }}
                 className="group relative flex flex-col overflow-hidden rounded-2xl p-8
                   transition-all duration-300 hover:-translate-y-2 cursor-pointer"
                 style={{
@@ -28,12 +47,14 @@ export function ServicesSection() {
                   border: '1px solid var(--color-border)',
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.boxShadow = '0 20px 48px var(--shadow-main)'
-                  e.currentTarget.style.borderColor = 'var(--color-primary)'
+                  const el = e.currentTarget as HTMLElement
+                  el.style.boxShadow = '0 20px 48px var(--shadow-main)'
+                  el.style.borderColor = 'var(--color-primary)'
                 }}
                 onMouseLeave={e => {
-                  e.currentTarget.style.boxShadow = 'none'
-                  e.currentTarget.style.borderColor = 'var(--color-border)'
+                  const el = e.currentTarget as HTMLElement
+                  el.style.boxShadow = 'none'
+                  el.style.borderColor = 'var(--color-border)'
                 }}
               >
                 {/* Top accent bar */}
@@ -72,7 +93,10 @@ export function ServicesSection() {
                   {t(`items.${key}.title`)}
                 </h3>
 
-                <p className="text-sm leading-relaxed flex-grow mb-6" style={{ color: 'var(--color-text-muted)', lineHeight: 1.75 }}>
+                <p
+                  className="text-sm leading-relaxed flex-grow mb-6"
+                  style={{ color: 'var(--color-text-muted)', lineHeight: 1.75 }}
+                >
                   {t(`items.${key}.desc`)}
                 </p>
 
@@ -82,10 +106,14 @@ export function ServicesSection() {
                 >
                   {t('learnMore')}
                   <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true">
-                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                    <path
+                      fillRule="evenodd"
+                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 </span>
-              </div>
+              </motion.div>
             )
           })}
         </div>

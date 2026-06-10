@@ -3,6 +3,7 @@ import { ServicesSection } from '@/components/sections/ServicesSection'
 import { CalculatorSection } from '@/components/sections/CalculatorSection'
 import { AboutSection } from '@/components/sections/AboutSection'
 import { BrandsSection } from '@/components/sections/BrandsSection'
+import { GallerySection } from '@/components/sections/GallerySection'
 import { ReviewsSection } from '@/components/sections/ReviewsSection'
 import { FaqSection } from '@/components/sections/FaqSection'
 import { ContactSection } from '@/components/sections/ContactSection'
@@ -25,6 +26,7 @@ export default function HomePage() {
         <CalculatorSection />
         <AboutSection />
         <BrandsSection />
+        <GallerySection />
         <ReviewsSection />
         <FaqSection />
         <ContactSection />
