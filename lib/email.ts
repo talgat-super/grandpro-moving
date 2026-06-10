@@ -13,7 +13,7 @@ export async function sendContactEmail(data: ContactEmailData) {
   const { name, phone, service, message } = data
 
   return resend.emails.send({
-    from: 'GrandPro Moving <no-reply@grandpro.kz>',
+    from: 'GrandPro Moving <onboarding@resend.dev>',
     to: [process.env.CONTACT_EMAIL ?? 'info@grandpro.kz'],
     subject: `Новая заявка от ${name}`,
     html: `
