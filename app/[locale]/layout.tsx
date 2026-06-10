@@ -82,6 +82,7 @@ export default async function LocaleLayout({
         </ThemeProvider>
         <Script
           id="schema-org"
+          strategy="beforeInteractive"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
         />
