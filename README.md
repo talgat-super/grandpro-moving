@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GrandPro Moving — корпоративный сайт
 
-## Getting Started
+Сайт мувинговой компании GrandPro Moving (Алматы). Next.js 16 + React 19, мультиязычность (RU/KZ/EN), тёмная/светлая тема, анимированный прелоадер с грузовиком, интерактивная карта 2GIS, форма заявки с отправкой на email через Resend.
 
-First, run the development server:
+## Стек
+
+| Слой | Технология |
+|---|---|
+| Фреймворк | Next.js 16.2.7 (App Router) + React 19 |
+| Стили | Tailwind CSS 4 |
+| Анимации | Framer Motion |
+| i18n | next-intl (ru / kz / en) |
+| Email | Resend API |
+| Карта | 2GIS JS API |
+| Деплой | Vercel (регион: fra1) |
+
+## Быстрый старт
 
 ```bash
+# 1. Клонировать репозиторий
+git clone https://github.com/talgat-super/grandpro-moving.git
+cd grandpro-moving
+
+# 2. Установить зависимости
+npm install
+
+# 3. Настроить переменные окружения
+cp .env.example .env.local
+# Открыть .env.local и вставить ключи (см. раздел «Переменные окружения»)
+
+# 4. Запустить dev-сервер
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Сайт доступен на http://localhost:3000/ru
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Переменные окружения
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Скопировать `.env.example` в `.env.local` и заполнить:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Переменная | Описание | Где получить |
+|---|---|---|
+| `RESEND_API_KEY` | API-ключ Resend для отправки email | [resend.com/api-keys](https://resend.com/api-keys) |
+| `CONTACT_EMAIL` | Email для получения заявок | Любой ваш email |
 
-## Learn More
+> **Важно:** `.env.local` никогда не коммитится в git. Для Vercel — добавить переменные в Project Settings → Environment Variables.
 
-To learn more about Next.js, take a look at the following resources:
+## Структура проекта
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+app/
+  [locale]/           # Мультиязычные роуты (ru / kz / en)
+    layout.tsx        # Корневой layout: тема из cookie, JSON-LD
+    page.tsx          # Главная страница
+  api/contact/        # API route: приём заявок → Resend
+components/
+  layout/             # Header, Footer
+  sections/           # Hero, Services, Calculator, Reviews, Contact
+  ui/                 # Preloader (SVG грузовик), Map2GIS, SectionHeader
+  forms/              # ContactForm, QuickForm
+  providers/          # ThemeProvider (dark/light + cookie sync)
+lib/
+  email.ts            # Resend: шаблон письма с заявкой
+messages/             # Переводы: ru.json, kz.json, en.json
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Email (Resend)
 
-## Deploy on Vercel
+Заявки с формы отправляются через [Resend](https://resend.com).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Текущий sender:** `onboarding@resend.dev` (тестовый домен)
+- **Чтобы использовать брендированный адрес** (`no-reply@grandpro.kz`):
+  1. Верифицировать домен `grandpro.kz` в Resend Dashboard → Domains
+  2. Поменять `from` в `lib/email.ts` на `GrandPro Moving <no-reply@grandpro.kz>`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Деплой на Vercel
+
+```bash
+# Установить Vercel CLI
+npm i -g vercel
+
+# Первый деплой
+vercel
+
+# Деплой в продакшн
+vercel --prod
+```
+
+После деплоя добавить переменные `RESEND_API_KEY` и `CONTACT_EMAIL` в Vercel Dashboard → Project → Settings → Environment Variables.
+
+## Скрипты
+
+```bash
+npm run dev    # Dev-сервер на localhost:3000
+npm run build  # Production-сборка
+npm start      # Запуск production-сборки локально
+```
+
+## Локализация
+
+Поддерживаемые языки: **ru** (по умолчанию), **kz**, **en**.
+
+Переводы хранятся в `messages/ru.json`, `messages/kz.json`, `messages/en.json`.
+Переключение языка — через кнопку в шапке сайта; URL меняется (`/ru`, `/kz`, `/en`).
