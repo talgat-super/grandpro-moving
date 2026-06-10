@@ -1,8 +1,9 @@
 'use client'
 import { useTranslations } from 'next-intl'
-import { Phone, Mail, MapPin, Clock } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock, ExternalLink } from 'lucide-react'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { ContactForm } from '@/components/forms/ContactForm'
+import { Map2GIS } from '@/components/ui/Map2GIS'
 
 export function ContactSection() {
   const t = useTranslations('contact')
@@ -55,43 +56,35 @@ export function ContactSection() {
               </div>
             ))}
 
-            {/* Map mock */}
-            <div
-              className="w-full h-52 rounded-xl overflow-hidden relative"
-              style={{
-                background: 'var(--bg-surface-elevated)',
-                border: '1px solid var(--color-border)',
-              }}
-            >
-              <div
-                className="absolute inset-0 opacity-20"
-                style={{
-                  backgroundImage: 'radial-gradient(currentColor 1px, transparent 1px)',
-                  backgroundSize: '20px 20px',
-                  color: 'var(--color-text-muted)',
-                }}
-                aria-hidden="true"
-              />
-              <div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                style={{ color: 'var(--color-primary)', animation: 'pulsePin 2s ease-in-out infinite' }}
-              >
-                <MapPin size={40} fill="currentColor" style={{ opacity: 0.8 }} />
-              </div>
+            {/* 2GIS Map */}
+            <div className="relative">
+              <Map2GIS height="340px" />
               <a
-                href="https://2gis.kz/almaty"
+                href="https://2gis.kz/almaty/geo/9430030545481524"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute bottom-3 right-3 px-3 py-1.5 rounded-md text-xs font-semibold
-                  cursor-pointer transition-colors"
+                className="absolute bottom-3 right-3 flex items-center gap-1.5 px-3 py-1.5 rounded-lg
+                  text-xs font-semibold cursor-pointer transition-all duration-200 z-10"
                 style={{
-                  background: 'var(--bg-surface)',
+                  background: 'var(--glass-bg)',
+                  backdropFilter: 'blur(12px)',
+                  WebkitBackdropFilter: 'blur(12px)',
                   border: '1px solid var(--color-border)',
                   color: 'var(--color-text)',
+                  boxShadow: '0 2px 12px var(--shadow-main)',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--color-primary)')}
-                onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--color-border)')}
+                onMouseEnter={e => {
+                  const el = e.currentTarget as HTMLElement
+                  el.style.borderColor = 'var(--color-primary)'
+                  el.style.color = 'var(--color-primary)'
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget as HTMLElement
+                  el.style.borderColor = 'var(--color-border)'
+                  el.style.color = 'var(--color-text)'
+                }}
               >
+                <ExternalLink size={11} />
                 {t('open2gis')}
               </a>
             </div>
