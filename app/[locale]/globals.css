@@ -54,6 +54,11 @@
   50% { opacity: 1; }
 }
 
+@keyframes truck-bounce {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-2.5px); }
+}
+
 /* Unlayered override — highest cascade priority, beats @layer utilities from Tailwind v4 */
 .mx-auto {
   margin-left: auto !important;
