@@ -24,11 +24,13 @@ export function ThemeProvider({
     const initial: Theme = stored === 'light' ? 'light' : defaultTheme
     setThemeState(initial)
     applyTheme(initial)
+    document.cookie = `theme=${initial}; path=/; max-age=31536000; SameSite=Lax`
   }, [defaultTheme])
 
   const setTheme = useCallback((t: Theme) => {
     setThemeState(t)
     localStorage.setItem('theme', t)
+    document.cookie = `theme=${t}; path=/; max-age=31536000; SameSite=Lax`
     applyTheme(t)
   }, [])
 

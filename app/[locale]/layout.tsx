@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { cookies } from 'next/headers'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
-import Script from 'next/script'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -47,9 +47,6 @@ const schemaOrg = {
   },
 }
 
-// Runs before React hydration in the browser — no React warning because this is a Server Component
-const themeInitScript = `(function(){try{var t=localStorage.getItem('theme');document.documentElement.classList.add(t==='light'?'light':'dark')}catch(e){document.documentElement.classList.add('dark')}})()`
-
 export default async function LocaleLayout({
   children,
   params,
@@ -61,31 +58,25 @@ export default async function LocaleLayout({
   if (!locales.includes(locale)) notFound()
 
   const messages = await getMessages()
+  const cookieStore = await cookies()
+  const themeCookie = cookieStore.get('theme')?.value
+  const theme: 'dark' | 'light' = themeCookie === 'light' ? 'light' : 'dark'
 
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <body>
-        {/*
-          strategy="beforeInteractive" — Next.js physically extracts this from React's
-          virtual DOM and injects it into <head> in the raw HTML. React never sees a
-          <script> node during rendering, so no console warning fires.
-        */}
-        <Script
-          id="theme-init"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{ __html: themeInitScript }}
+    <html lang={locale} className={theme} suppressHydrationWarning>
+      <head>
+        {/* JSON-LD structured data — native <script> per Next.js 16 docs recommendation */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
         />
+      </head>
+      <body>
         <ThemeProvider defaultTheme="dark">
           <NextIntlClientProvider messages={messages}>
             {children}
           </NextIntlClientProvider>
         </ThemeProvider>
-        <Script
-          id="schema-org"
-          strategy="beforeInteractive"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
-        />
       </body>
     </html>
   )
