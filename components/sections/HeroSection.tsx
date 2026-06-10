@@ -1,3 +1,4 @@
+'use client'
 import { useTranslations } from 'next-intl'
 import { ArrowRight, ChevronDown, Shield, Truck, Users, Award } from 'lucide-react'
 import { QuickForm } from '@/components/forms/QuickForm'

@@ -1,3 +1,5 @@
+'use client'
+
 const BRANDS = [
   'Kaspi Bank', 'Halyk Bank', 'Beeline KZ', 'Tele2 KZ',
   'Freedom Finance', 'BTS Digital', 'KazMunayGas', 'Air Astana',

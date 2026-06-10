@@ -1,3 +1,4 @@
+'use client'
 import { useTranslations } from 'next-intl'
 import { Home, Building2, Globe, Package, Box, Warehouse } from 'lucide-react'
 import { SectionHeader } from '@/components/ui/SectionHeader'

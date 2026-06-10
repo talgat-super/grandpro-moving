@@ -1,3 +1,4 @@
+'use client'
 import { useTranslations } from 'next-intl'
 import { Phone, Mail, MapPin, Clock } from 'lucide-react'
 import { SectionHeader } from '@/components/ui/SectionHeader'
